@@ -1,0 +1,25 @@
+{
+  "name": "desafio_back_end_junior",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Jefferson-Matheus/desafio_back_end_junior.git",
+  "author": "Jefferson Ferreira <jeffersonmatheusu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node-dev --exit-child --respawn --no-notify src/server.ts"
+  },
+  "devDependencies": {
+    "@types/multer": "^1.4.12",
+    "@types/pg": "^8.11.11",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "multer": "^1.4.5-lts.2",
+    "pg": "^8.14.1"
+  }
+}
