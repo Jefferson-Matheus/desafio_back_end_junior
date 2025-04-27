@@ -1,13 +1,13 @@
-import {Router, Request, Response} from 'express';
+import {Request, Response} from 'express';
+import express from 'express';
 import { UserController } from '../controllers/user/userController';
 
-const router = Router();
+const router = express.Router();
 
-router.get('/', (request:Request, responde: Response) => {
-    responde.send("Hello Wolrd");
+router.get('/' , (request:Request, response:Response ) => {
+    response.send("Hello World");
 });
 
-router.post('/user', new UserController().handle);
-
+router.post('/user', new UserController().create);
 
 export {router};
