@@ -1,10 +1,10 @@
-import {Client} from 'pg';
+import {Client, Pool} from 'pg';
 
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const postgresClient = new Client({
+const postgresClient = new Pool({
     user: process.env.USER_POSTGRES_NAME,
     password: process.env.USER_POSTGRES_PASSWORD,
     host: process.env.USER_POSTGRES_HOST,
