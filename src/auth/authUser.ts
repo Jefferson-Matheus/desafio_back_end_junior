@@ -1,6 +1,7 @@
 import {sign} from 'jsonwebtoken';
 import postgresClient from '../connection/connection';
 import dotenv from 'dotenv';
+import {compare} from 'bcrypt';
 
 dotenv.config();
 
@@ -14,9 +15,9 @@ class AuthUser{
         const connection = await postgresClient.connect();
 
         const query = {
-            text: 'SELECT * FROM users WHERE email = $1 AND userpassword = $2',
+            text: 'SELECT * FROM users WHERE email = $1',
 
-            values:[email,password]
+            values:[email]
         }
 
         try {
@@ -26,26 +27,28 @@ class AuthUser{
                 return {message: "Email Or Password Are Incorrects Or User Do Not Exists"};
             }
 
-            const username = user.rows[0].username;
-            
-            const email = user.rows[0].email;
+            const ispasswordCorrect = await compare(password,user.rows[0].userpassword);
 
-            const password = user.rows[0].userpassword;
+            if(!ispasswordCorrect){
+                return {message: "Email Or Password Are Incorrects Or User Do Not Exists"};
+            }
 
             const secret = process.env.JWT_SECRET || 'secret';
 
             const token = sign({
-                username: username, 
-                emailUser: email, 
-                userPassword: password},secret, {expiresIn: '1d'}
+                userName: user.rows[0].username,
+                email: email },
+                secret,
+                {expiresIn: '1d'}
             );
 
             console.log(token);
 
-            return {jwtToken:token, user: user.rows};
+            return {currentUser: user.rows[0], jwtToken: token};
 
         } catch (error) {
             console.log(error)
+            throw new Error("Error");
         }
     }
 }
