@@ -25,3 +25,5 @@ class MovieModel{
         }
     }
 }
+
+export {MovieModel};
