@@ -24,4 +24,6 @@ router.post('/movie',upload.single('banner'), new MovieController().createMovie)
 
 router.get('/movies' ,new MovieController().listAllMovies);
 
+router.get('/movies/sorted' ,new MovieController().listAllMoviesSorted);
+
 export {router};
