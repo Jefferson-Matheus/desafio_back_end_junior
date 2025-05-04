@@ -45,6 +45,27 @@ class MovieModel{
             postgresClient.end();
         }
     }
+
+    async sortAll(){
+        const connection = await postgresClient.connect();
+
+        try{
+            const query = {
+                text: 'SELECT * FROM movies ORDER BY releasedate',
+            }
+
+            const movieResult = await connection.query(query);
+
+            const movieListSorted = movieResult.rows;
+
+            return movieListSorted;
+        }catch(error){
+            console.log(error);
+            throw new Error("Error");
+        }finally{
+            postgresClient.end();
+        }
+    }
 }
 
 export {MovieModel};

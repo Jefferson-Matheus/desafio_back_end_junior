@@ -21,9 +21,18 @@ class MovieController{
         
         const movieModel = new MovieModel();
 
-        const movieCreated = await movieModel.listAll();
+        const movieList = await movieModel.listAll();
 
-        return response.status(200).json(movieCreated);
+        return response.status(200).json(movieList);
+    }
+
+    async listAllMoviesSorted(request:Request, response: Response): Promise<any>{
+        
+        const movieModel = new MovieModel();
+
+        const movieListSorted = await movieModel.sortAll();
+
+        return response.status(200).json(movieListSorted);
     }
 }
 
