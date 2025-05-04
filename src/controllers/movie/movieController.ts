@@ -16,6 +16,15 @@ class MovieController{
 
         return response.status(200).json(movieCreated);
     }
+
+    async listAllMovies(request:Request, response: Response): Promise<any>{
+        
+        const movieModel = new MovieModel();
+
+        const movieCreated = await movieModel.listAll();
+
+        return response.status(200).json(movieCreated);
+    }
 }
 
 export {MovieController};

@@ -24,6 +24,27 @@ class MovieModel{
             postgresClient.end();
         }
     }
+
+    async listAll(){
+        const connection = await postgresClient.connect();
+
+        try{
+            const query = {
+                text: 'SELECT * FROM movies',
+            }
+
+            const movieResult = await connection.query(query);
+
+            const movieList = movieResult.rows;
+
+            return movieList;
+        }catch(error){
+            console.log(error);
+            throw new Error("Error");
+        }finally{
+            postgresClient.end();
+        }
+    }
 }
 
 export {MovieModel};

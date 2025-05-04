@@ -22,4 +22,6 @@ router.post('/auth', new AuthUserController().authenticate);
 
 router.post('/movie',upload.single('banner'), new MovieController().createMovie);
 
+router.get('/movies' ,new MovieController().listAllMovies);
+
 export {router};
