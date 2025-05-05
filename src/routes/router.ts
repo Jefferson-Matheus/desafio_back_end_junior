@@ -29,4 +29,6 @@ router.get('/movies' ,isAuthenticatedMiddleware.middleware,new MovieController()
 
 router.get('/movies/sorted' ,isAuthenticatedMiddleware.middleware,new MovieController().listAllMoviesSorted);
 
+router.get('/movies/page/:id' ,isAuthenticatedMiddleware.middleware,new MovieController().listAllMoviesByPagination);
+
 export {router};

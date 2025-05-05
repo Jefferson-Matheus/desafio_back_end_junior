@@ -34,6 +34,17 @@ class MovieController{
 
         return response.status(200).json(movieListSorted);
     }
+
+    async listAllMoviesByPagination(request:Request, response: Response): Promise<any>{
+
+        const pageId = Number(request.query.id);
+        
+        const movieModel = new MovieModel();
+
+        const movieListAfterPagination = await movieModel.paginationMovies(pageId);
+
+        return response.status(200).json(movieListAfterPagination);
+    }
 }
 
 export {MovieController};

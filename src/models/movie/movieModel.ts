@@ -66,6 +66,30 @@ class MovieModel{
             postgresClient.end();
         }
     }
+
+    async paginationMovies(pageId: number){
+
+        const limit = 10;
+
+        let offset = limit * pageId;
+
+        const connection = await postgresClient.connect();
+
+        try{
+            const query = {
+                text: `SELECT * FROM movies LIMIT ${limit} OFFSET ${offset} `,
+            }
+
+            const movieResult = await connection.query(query);
+
+            const movieListAfterPagination = movieResult.rows;
+
+            return movieListAfterPagination;
+
+        }catch(error){
+            console.log(error);
+        }
+    }
 }
 
 export {MovieModel};
