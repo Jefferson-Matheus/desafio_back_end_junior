@@ -6,7 +6,7 @@ import { MovieController } from '../controllers/movie/movieController';
 import multerConfig from '../multer/multer';
 import { IsAuthenticated } from '../middlewares/isAuthenticated';
 
-import multer from 'multer'
+import multer from 'multer';
 
 const router = express.Router();
 
