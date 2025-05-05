@@ -14,7 +14,7 @@ class MovieController{
 
         const movieCreated = await movieModel.createMovie(movie.moviename,movie.sinopse,banner,movie.releaseDate);
 
-        return response.status(200).json(movieCreated);
+        return response.status(201).json(movieCreated);
     }
 
     async listAllMovies(request:Request, response: Response): Promise<any>{
