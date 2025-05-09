@@ -54,6 +54,11 @@
                                     "password": {
                                         "type": "string"
                                     }
+                                },
+                                "example":{
+                                    "userName": "johndoe",
+                                    "email": "john.doe@example.com",
+                                    "password": "securePassword123"
                                 }
                             }
                         }
@@ -84,6 +89,10 @@
                                     "password": {
                                         "type": "string"
                                     }
+                                },
+                                "example":{
+                                    "email": "john.doe@example.com",
+                                    "password": "securePassword123"
                                 }
                             }
                         }
@@ -109,7 +118,40 @@
                 "description": "Lista Todos Os Filmes",
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties":{
+                                            "id":{
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "moviename":{
+                                                "type": "string",
+                                                "example": "Homem-Aranha Sem Volta Para Casa"
+                                            },
+                                            "sinopse":{
+                                                "type": "string",
+                                                "example": "Peter Parker Após Ter Sua Identidade Revelada..."
+                                            },
+                                            "banner":{
+                                                "type":"string",
+                                                "example": "Homem-Aranha-sem-volta-para-casa.png"
+                                            },
+                                            "releaseDate":{
+                                                "type": "string",
+                                                "format":"date",
+                                                "example": "16-12-2021"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -130,7 +172,40 @@
                 "description": "Lista Todos Os Filmes Ordenados Por Ano",
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "array",
+                                    "items":{
+                                        "type": "object",
+                                        "properties":{
+                                            "id":{
+                                                "type": "integer",
+                                                "example": 5
+                                            },
+                                            "moviename":{
+                                                "type": "string",
+                                                "example": "Túmulo dos Vagalumes"
+                                            },
+                                            "sinopse":{
+                                                "type": "string",
+                                                "example": "A animação se passa na cidade de Kobe, no Japão Imperial, que conta a história de dois irmãos..."
+                                            },
+                                            "banner":{
+                                                "type":"string",
+                                                "example": "Túmulo dos Vagalumes.png"
+                                            },
+                                            "releaseDate":{
+                                                "type": "string",
+                                                "format":"date",
+                                                "example": "16-4-1988"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -156,10 +231,12 @@
                                 "type": "object",
                                 "properties": {
                                     "moviename": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Akira"
                                     },
                                     "sinopse": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Uma grande explosão fez com que Tóquio fosse destruída em 1988..."
                                     },
                                     "banner": {
                                         "type": "file",
@@ -167,7 +244,8 @@
                                     },
                                     "releaseDate": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date",
+                                        "example": "16-7-1988"
                                     }
                                 }
                             }
