@@ -1,43 +1,54 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "title": "Movies API",
-      "version": "1.0.0"
+        "title": "Movies API",
+        "version": "1.0.0"
     },
+    "tags": [
+        {
+            "name": "User",
+            "description": "Operações relacionadas a usuários."
+        },
+        {
+            "name": "Movie",
+            "description": "Operações relacionadas a filmes."
+        }
+    ],
     "components": {
         "securitySchemes": {
-          "bearerAuth": {
-            "type": "http",
-            "scheme": "bearer",
-            "bearerFormat": "JWT",
-            "description": "JWT Authorization header using the Bearer scheme."
-          }
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "JWT Authorization header using the Bearer scheme."
+            }
         }
-      },
-      "security": [
+    },
+    "security": [
         {
-          "bearerAuth": []
+            "bearerAuth": []
         }
-      ],
-    "paths":{
-        "/user":{
-            "post":{
+    ],
+    "paths": {
+        "/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
                 "description": "Cria Um Novo Usuario",
                 "requestBody": {
-                    "content":{
-                        "application/json":{
-                            "schema":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
                                 "type": "object",
-                                "properties":{
+                                "properties": {
                                     "userName": {
                                         "type": "string"
                                     },
-
-                                    "email":{
+                                    "email": {
                                         "type": "string"
                                     },
-
-                                    "password":{
+                                    "password": {
                                         "type": "string"
                                     }
                                 }
@@ -45,29 +56,29 @@
                         }
                     }
                 },
-                "responses":{
-                    "201":{
+                "responses": {
+                    "201": {
                         "description": "Created"
                     }
                 }
             }
         },
-
-        "/auth":{
-            "post":{
+        "/auth": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
                 "description": "Faz O Login Do Usuario",
                 "requestBody": {
-                    "content":{
-                        "application/json":{
-                            "schema":{
+                    "content": {
+                        "application/json": {
+                            "schema": {
                                 "type": "object",
-                                "properties":{
-
-                                    "email":{
+                                "properties": {
+                                    "email": {
                                         "type": "string"
                                     },
-
-                                    "password":{
+                                    "password": {
                                         "type": "string"
                                     }
                                 }
@@ -75,67 +86,68 @@
                         }
                     }
                 },
-                "responses":{
-                    "200":{
+                "responses": {
+                    "200": {
                         "description": "Ok"
                     }
                 }
             }
         },
-
-        "/movies":{
-            "get":{
+        "/movies": {
+            "get": {
+                "tags": [
+                    "Movie"
+                ],
                 "description": "Lista Todos Os Filmes",
                 "responses": {
-                    "200":{
+                    "200": {
                         "description": "Ok"
                     },
-
                     "401": {
                         "description": "Unauthorized"
                     }
                 }
             }
         },
-
-        "/movies/sorted":{
-            "get":{
+        "/movies/sorted": {
+            "get": {
+                "tags": [
+                    "Movie"
+                ],
                 "description": "Lista Todos Os Filmes Ordenados Por Ano",
                 "responses": {
-                    "200":{
+                    "200": {
                         "description": "Ok"
                     },
-
                     "401": {
                         "description": "Unauthorized"
                     }
                 }
             }
         },
-
-        "/movie":{
-            "post":{
+        "/movie": {
+            "post": {
+                "tags": [
+                    "Movie"
+                ],
                 "description": "Cria Um Novo Usuario",
                 "requestBody": {
-                    "content":{
-                        "multipart/form-data":{
-                            "schema":{
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
                                 "type": "object",
-                                "properties":{
+                                "properties": {
                                     "moviename": {
                                         "type": "string"
                                     },
-
-                                    "sinopse":{
+                                    "sinopse": {
                                         "type": "string"
                                     },
-
-                                    "banner":{
+                                    "banner": {
                                         "type": "file",
-                                        "format":  "base64"
+                                        "format": "base64"
                                     },
-
-                                    "releaseDate":{
+                                    "releaseDate": {
                                         "type": "string",
                                         "format": "date"
                                     }
@@ -144,18 +156,20 @@
                         }
                     }
                 },
-                "responses":{
-                    "201":{
+                "responses": {
+                    "201": {
                         "description": "Created"
                     }
                 }
             }
         },
-
-        "/movies/page/{id}":{
-            "get":{
+        "/movies/page/{id}": {
+            "get": {
+                "tags": [
+                    "Movie"
+                ],
                 "description": "Lista Todos Os Filmes Por Paginação",
-                "parameters":[
+                "parameters": [
                     {
                         "name": "id",
                         "in": "path",
@@ -164,17 +178,14 @@
                     }
                 ],
                 "responses": {
-                    "200":{
+                    "200": {
                         "description": "Ok"
                     },
-
                     "401": {
                         "description": "Unauthorized"
                     }
                 }
             }
         }
-
-
     }
 }
