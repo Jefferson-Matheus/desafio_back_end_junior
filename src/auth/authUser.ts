@@ -3,13 +3,14 @@ import postgresClient from '../connection/connection';
 import dotenv from 'dotenv';
 import {compare} from 'bcrypt';
 
+
 dotenv.config();
 
 
 class AuthUser{
     async authenticate(email:string, password: string){
         if(!email || !password){
-            return {message: "All Field Are Requireds"};
+            return {message: "All Filds Are Required"}
         }
 
         const connection = await postgresClient.connect();
@@ -24,13 +25,15 @@ class AuthUser{
             const user = await connection.query(query);
 
             if(user.rows.length == 0){
-                return {message: "Email Or Password Are Incorrects Or User Do Not Exists"};
+
+                return {message: "Email Or Password Are Incorrects Or User Do Not Exists."}
+                
             }
 
             const ispasswordCorrect = await compare(password,user.rows[0].userpassword);
 
             if(!ispasswordCorrect){
-                return {message: "Email Or Password Are Incorrects Or User Do Not Exists"};
+                return {message: "Password is Incorrect"};
             }
 
             const secret = process.env.JWT_SECRET || 'secret';
@@ -49,6 +52,8 @@ class AuthUser{
         } catch (error) {
             console.log(error)
             throw new Error("Error");
+        }finally{
+            connection.release();
         }
     }
 }

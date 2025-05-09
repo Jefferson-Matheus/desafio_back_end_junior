@@ -8,9 +8,19 @@ class AuthUserController{
 
         const authUser = new AuthUser();
 
+        try{
+
         const user = await authUser.authenticate(loginData.email,loginData.password);
 
-        response.json(user);
+        if(user.message){
+           return response.status(400).json(user);
+        }
+
+        return response.json(user);
+
+        }catch(error){
+            throw new Error(`Error: ${error}`);
+        }
     }
 }
 
