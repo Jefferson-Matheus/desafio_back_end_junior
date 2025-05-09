@@ -2,8 +2,15 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Movies API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "description": "Esta é uma API para gerenciar informações sobre filmes. Ela permite criar usuários, autenticar, listar filmes (com opções de ordenação e paginação) e adicionar novos filmes com seus respectivos detalhes e banners."
     },
+    "servers": [
+        {
+            "url": "http://localhost:3000",
+            "description": "Servidor De Desenvolvimento Local"
+        }
+    ],
     "tags": [
         {
             "name": "User",
