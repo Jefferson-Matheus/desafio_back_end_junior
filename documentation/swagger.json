@@ -31,11 +31,7 @@
             }
         }
     },
-    "security": [
-        {
-            "bearerAuth": []
-        }
-    ],
+    "security": [],
     "paths": {
         "/user": {
             "post": {
@@ -102,6 +98,11 @@
         },
         "/movies": {
             "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "tags": [
                     "Movie"
                 ],
@@ -118,6 +119,11 @@
         },
         "/movies/sorted": {
             "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "tags": [
                     "Movie"
                 ],
@@ -134,6 +140,11 @@
         },
         "/movie": {
             "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "tags": [
                     "Movie"
                 ],
@@ -172,6 +183,11 @@
         },
         "/movies/page/{id}": {
             "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "tags": [
                     "Movie"
                 ],
