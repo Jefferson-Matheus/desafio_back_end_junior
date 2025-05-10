@@ -64,8 +64,6 @@ class MovieController {
 
         const pageId = parseInt(request.params.id as string);
 
-        console.log(request.params.id);
-
         const movieModel = new MovieModel();
 
         try {
@@ -74,7 +72,7 @@ class MovieController {
             return response.status(200).json(movieListAfterPagination);
 
         }catch(error){
-            
+
             throw error
         }
 
