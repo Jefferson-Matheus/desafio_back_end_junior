@@ -46,13 +46,17 @@
                                 "type": "object",
                                 "properties": {
                                     "userName": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "required": true
+                                        
                                     },
                                     "email": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "required": true
                                     },
                                     "password": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "required": true
                                     }
                                 },
                                 "example":{
@@ -66,7 +70,44 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created"
+                        "description": "Created",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "userName":{
+                                            "type": "string",
+                                            "example": "John"
+                                        },
+                                        "email":{
+                                            "type": "string",
+                                            "example": "john@gmail.com"
+                                        },
+                                        "password":{
+                                            "type":"string",
+                                            "example":"Hash Password"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "message":{
+                                            "type": "string",
+                                            "example": "All Fields Are Requireds"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
