@@ -83,15 +83,16 @@ class MovieModel{
 
         const limit = 10;
 
-        let offset = limit * pageId;
+        let offset = limit * (pageId - 1);
 
         const connection = await postgresClient.connect();
 
         try{
             const query = {
-                text: `SELECT * FROM movies LIMIT ${limit} OFFSET ${offset} `,
+                text: 'SELECT * FROM movies LIMIT $1 OFFSET $2',
+                values: [limit, offset]
             }
-
+    
             const movieResult = await connection.query(query);
 
             const movieListAfterPagination = movieResult.rows;
@@ -99,7 +100,12 @@ class MovieModel{
             return movieListAfterPagination;
 
         }catch(error){
-            console.log(error);
+            
+            throw error;
+
+        }finally{
+
+            connection.release();
         }
     }
 }

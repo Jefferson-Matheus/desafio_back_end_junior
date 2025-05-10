@@ -62,13 +62,23 @@ class MovieController {
 
     async listAllMoviesByPagination(request: Request, response: Response): Promise<any> {
 
-        const pageId = Number(request.query.id);
+        const pageId = parseInt(request.params.id as string);
+
+        console.log(request.params.id);
 
         const movieModel = new MovieModel();
 
-        const movieListAfterPagination = await movieModel.paginationMovies(pageId);
+        try {
+            const movieListAfterPagination = await movieModel.paginationMovies(pageId);
 
-        return response.status(200).json(movieListAfterPagination);
+            return response.status(200).json(movieListAfterPagination);
+
+        }catch(error){
+            
+            throw error
+        }
+
+
     }
 }
 
