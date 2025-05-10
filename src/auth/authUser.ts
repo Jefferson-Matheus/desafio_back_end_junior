@@ -45,15 +45,16 @@ class AuthUser{
                 {expiresIn: '1d'}
             );
 
-            console.log(token);
-
             return {currentUser: user.rows[0], jwtToken: token};
 
         } catch (error) {
-            console.log(error)
-            throw new Error("Error");
+
+            throw error;
+
         }finally{
+
             connection.release();
+            
         }
     }
 }

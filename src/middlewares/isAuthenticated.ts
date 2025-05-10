@@ -8,9 +8,6 @@ class IsAuthenticated{
     async middleware(request: Request, response: Response, next: NextFunction):Promise<any>{
         const authToken = request.headers.authorization;
 
-
-        console.log(authToken);
-
         if (!authToken) {
             return response.status(401).end();
         }
@@ -23,8 +20,11 @@ class IsAuthenticated{
         
 
             return next();
+
           }catch (error) {
+
             return response.status(401).end();
+            
           }
     }
 }
