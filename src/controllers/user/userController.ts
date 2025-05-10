@@ -8,9 +8,22 @@ class UserController{
 
         const userModel = new UserModel();
 
-        const userCreated = await userModel.createUser(userData.userName,userData.email,userData.password);
+        try{
 
-        return response.status(201).json(userCreated);
+            const userCreated = await userModel.createUser(userData.userName,userData.email,userData.password);
+
+            if(userCreated.message){
+
+                return response.status(400).json(userCreated);
+            }
+
+            return response.status(201).json(userCreated);
+
+        }catch(error){
+            throw error;
+        }
+
+
     }
 
 }

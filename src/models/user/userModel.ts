@@ -3,6 +3,11 @@ import {hash} from 'bcrypt';
 
 class UserModel{
     async createUser(userName:string,email:string,password:string){
+
+        if(!userName || !email || !password){
+            return {message: "All Fields Are Requireds"}
+        }
+
         const connection = await postgresClient.connect();
 
         try {
@@ -21,8 +26,13 @@ class UserModel{
             return userCreated;
 
         } catch (error) {
-            console.log(error);
-            throw new Error("Error");
+
+            throw error;
+
+        }finally{
+
+            connection.release();
+
         }
     }
 }
