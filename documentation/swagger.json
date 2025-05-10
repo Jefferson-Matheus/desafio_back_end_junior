@@ -48,7 +48,6 @@
                                     "userName": {
                                         "type": "string",
                                         "required": true
-                                        
                                     },
                                     "email": {
                                         "type": "string",
@@ -59,7 +58,7 @@
                                         "required": true
                                     }
                                 },
-                                "example":{
+                                "example": {
                                     "userName": "johndoe",
                                     "email": "john.doe@example.com",
                                     "password": "securePassword123"
@@ -71,36 +70,36 @@
                 "responses": {
                     "201": {
                         "description": "Created",
-                        "content":{
-                            "application/json":{
-                                "schema":{
-                                    "type":"object",
-                                    "properties":{
-                                        "userName":{
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "userName": {
                                             "type": "string",
                                             "example": "John"
                                         },
-                                        "email":{
+                                        "email": {
                                             "type": "string",
                                             "example": "john@gmail.com"
                                         },
-                                        "password":{
-                                            "type":"string",
-                                            "example":"Hash Password"
+                                        "password": {
+                                            "type": "string",
+                                            "example": "Hash Password"
                                         }
                                     }
                                 }
                             }
                         }
                     },
-                    "400":{
+                    "400": {
                         "description": "Bad Request",
-                        "content":{
-                            "application/json":{
-                                "schema":{
+                        "content": {
+                            "application/json": {
+                                "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "message":{
+                                        "message": {
                                             "type": "string",
                                             "example": "All Fields Are Requireds"
                                         }
@@ -131,7 +130,7 @@
                                         "type": "string"
                                     }
                                 },
-                                "example":{
+                                "example": {
                                     "email": "john.doe@example.com",
                                     "password": "securePassword123"
                                 }
@@ -160,32 +159,32 @@
                 "responses": {
                     "200": {
                         "description": "Ok",
-                        "content":{
-                            "application/json":{
-                                "schema":{
+                        "content": {
+                            "application/json": {
+                                "schema": {
                                     "type": "array",
-                                    "items":{
+                                    "items": {
                                         "type": "object",
-                                        "properties":{
-                                            "id":{
+                                        "properties": {
+                                            "id": {
                                                 "type": "integer",
                                                 "example": 1
                                             },
-                                            "moviename":{
+                                            "moviename": {
                                                 "type": "string",
                                                 "example": "Homem-Aranha Sem Volta Para Casa"
                                             },
-                                            "sinopse":{
+                                            "sinopse": {
                                                 "type": "string",
                                                 "example": "Peter Parker Após Ter Sua Identidade Revelada..."
                                             },
-                                            "banner":{
-                                                "type":"string",
+                                            "banner": {
+                                                "type": "string",
                                                 "example": "Homem-Aranha-sem-volta-para-casa.png"
                                             },
-                                            "releaseDate":{
+                                            "releaseDate": {
                                                 "type": "string",
-                                                "format":"date",
+                                                "format": "date",
                                                 "example": "16-12-2021"
                                             }
                                         }
@@ -214,32 +213,32 @@
                 "responses": {
                     "200": {
                         "description": "Ok",
-                        "content":{
-                            "application/json":{
-                                "schema":{
+                        "content": {
+                            "application/json": {
+                                "schema": {
                                     "type": "array",
-                                    "items":{
+                                    "items": {
                                         "type": "object",
-                                        "properties":{
-                                            "id":{
+                                        "properties": {
+                                            "id": {
                                                 "type": "integer",
                                                 "example": 5
                                             },
-                                            "moviename":{
+                                            "moviename": {
                                                 "type": "string",
                                                 "example": "Túmulo dos Vagalumes"
                                             },
-                                            "sinopse":{
+                                            "sinopse": {
                                                 "type": "string",
                                                 "example": "A animação se passa na cidade de Kobe, no Japão Imperial, que conta a história de dois irmãos..."
                                             },
-                                            "banner":{
-                                                "type":"string",
+                                            "banner": {
+                                                "type": "string",
                                                 "example": "Túmulo dos Vagalumes.png"
                                             },
-                                            "releaseDate":{
+                                            "releaseDate": {
                                                 "type": "string",
-                                                "format":"date",
+                                                "format": "date",
                                                 "example": "16-4-1988"
                                             }
                                         }
@@ -273,20 +272,24 @@
                                 "properties": {
                                     "moviename": {
                                         "type": "string",
-                                        "example": "Akira"
+                                        "example": "Akira",
+                                        "required": true
                                     },
                                     "sinopse": {
                                         "type": "string",
-                                        "example": "Uma grande explosão fez com que Tóquio fosse destruída em 1988..."
+                                        "example": "Uma grande explosão fez com que Tóquio fosse destruída em 1988...",
+                                        "required": true
                                     },
                                     "banner": {
                                         "type": "file",
-                                        "format": "base64"
+                                        "format": "base64",
+                                        "required": true
                                     },
                                     "releaseDate": {
                                         "type": "string",
                                         "format": "date",
-                                        "example": "16-7-1988"
+                                        "example": "16-7-1988",
+                                        "required": true
                                     }
                                 }
                             }
@@ -295,7 +298,52 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Created"
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "moviename": {
+                                            "type": "string",
+                                            "example": "Akira"
+                                        },
+                                        "sinopse": {
+                                            "type": "string",
+                                            "example": "Uma grande explosão fez com que Tóquio fosse destruída em 1988..."
+                                        },
+                                        "banner": {
+                                            "type": "string",
+                                            "example": "akira.jpg"
+                                        },
+                                        "releaseDate": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "16-7-1988"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400":{
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "All Fields Are Requireds"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     }
                 }
             }
