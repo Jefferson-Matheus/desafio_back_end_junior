@@ -375,7 +375,40 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "moviename": {
+                                                "type": "string",
+                                                "example": "Homem-Aranha Sem Volta Para Casa"
+                                            },
+                                            "sinopse": {
+                                                "type": "string",
+                                                "example": "Peter Parker Após Ter Sua Identidade Revelada..."
+                                            },
+                                            "banner": {
+                                                "type": "string",
+                                                "example": "Homem-Aranha-sem-volta-para-casa.png"
+                                            },
+                                            "releaseDate": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "16-12-2021"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
