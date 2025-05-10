@@ -96,12 +96,18 @@
                         "description": "Bad Request",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "All Fields Are Requireds"
+                                "examples":{
+                                    "missingRequiredField":{
+                                        "summary": "Required Fields",
+                                        "value": {
+                                          "message": "All Fields Are Requireds"
+                                        }
+                                    },
+
+                                    "invalidFormatEmail":{
+                                        "summary": "Invalid Format Email",
+                                        "value":{
+                                            "message": "Invalid Format Email"
                                         }
                                     }
                                 }
