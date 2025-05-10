@@ -8,6 +8,12 @@ class UserModel{
             return {message: "All Fields Are Requireds"}
         }
 
+        const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com(\.br)?|outlook\.com|hotmail\.com)$/;
+
+        if(!regex.test(email)){
+            return {message: "Invalid Format Email"}
+        }
+
         const connection = await postgresClient.connect();
 
         try {
