@@ -10,6 +10,7 @@ export default {
 
 
                     const fileName = file.originalname
+                    
                     return cb(null, fileName);
                 }
             }),
