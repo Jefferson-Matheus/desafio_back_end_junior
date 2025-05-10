@@ -1,32 +1,32 @@
 import postgresClient from "../../connection/connection";
-import {hash} from 'bcrypt';
+import { hash } from 'bcrypt';
 
-class UserModel{
-    async createUser(userName:string,email:string,password:string){
+class UserModel {
+    async createUser(userName: string, email: string, password: string) {
 
-        if(!userName || !email || !password){
-            return {message: "All Fields Are Requireds"}
+        if (!userName || !email || !password) {
+            return { message: "All Fields Are Requireds" }
         }
 
         const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com(\.br)?|outlook\.com|hotmail\.com)$/;
 
-        if(!regex.test(email)){
-            return {message: "Invalid Format Email"}
+        if (!regex.test(email)) {
+            return { message: "Invalid Format Email" }
         }
 
         const connection = await postgresClient.connect();
 
         try {
-            const hashedPassword = await hash(password,5);
+            const hashedPassword = await hash(password, 5);
 
             const query = {
                 text: 'INSERT INTO users (userName,email,userPassword) values ($1,$2,$3) RETURNING *',
-    
-                values:[userName,email,hashedPassword]
+
+                values: [userName, email, hashedPassword]
             }
 
             const userResult = await connection.query(query);
-            
+
             const userCreated = userResult.rows[0];
 
             return userCreated;
@@ -35,7 +35,7 @@ class UserModel{
 
             throw error;
 
-        }finally{
+        } finally {
 
             connection.release();
 
@@ -43,4 +43,4 @@ class UserModel{
     }
 }
 
-export {UserModel};
+export { UserModel };
