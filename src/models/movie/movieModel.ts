@@ -4,6 +4,9 @@ import postgresClient from "../../connection/connection";
 class MovieModel{
     async createMovie(movieName:string, sinopse:string,banner:string, releaseDate: Date){
         const connection = await postgresClient.connect();
+        if(!movieName || !sinopse || !banner || !releaseDate){
+            return {message: "All Filds Are Required"}
+        }
 
         try{
             const query = {
@@ -17,11 +20,14 @@ class MovieModel{
             const movieCreated = movieResult.rows[0];
 
             return movieCreated;
+
         }catch(error){
-            console.log(error);
-            throw new Error("Error");
+
+            throw error;
+
         }finally{
-            postgresClient.end();
+
+            connection.release();
         }
     }
 
@@ -38,11 +44,14 @@ class MovieModel{
             const movieList = movieResult.rows;
 
             return movieList;
+
         }catch(error){
-            console.log(error);
-            throw new Error("Error");
+
+            throw error;
+
         }finally{
-            postgresClient.end();
+
+            connection.release();
         }
     }
 
@@ -59,11 +68,14 @@ class MovieModel{
             const movieListSorted = movieResult.rows;
 
             return movieListSorted;
+
         }catch(error){
-            console.log(error);
-            throw new Error("Error");
+
+            throw error
+
         }finally{
-            postgresClient.end();
+
+            connection.release();
         }
     }
 

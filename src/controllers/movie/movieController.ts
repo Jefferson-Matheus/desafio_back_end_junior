@@ -1,44 +1,69 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { MovieModel } from '../../models/movie/movieModel';
 
 
-class MovieController{
-    async createMovie(request:Request, response: Response): Promise<any>{
-        console.log('Corpo da requisição:', request.body);
-        
+class MovieController {
+    async createMovie(request: Request, response: Response): Promise<any> {
         const movie = request.body;
 
         const movieModel = new MovieModel();
 
         const banner: string | any = request.file?.filename;
 
-        const movieCreated = await movieModel.createMovie(movie.moviename,movie.sinopse,banner,movie.releaseDate);
+        try {
+            const movieCreated = await movieModel.createMovie(movie.moviename, movie.sinopse, banner, movie.releaseDate);
 
-        return response.status(201).json(movieCreated);
+            if (movieCreated.message) {
+                
+                return response.status(400).json(movieCreated);
+            }
+
+            return response.status(201).json(movieCreated);
+
+        } catch (error) {
+            throw error;
+        }
+
     }
 
-    async listAllMovies(request:Request, response: Response): Promise<any>{
-        
+    async listAllMovies(request: Request, response: Response): Promise<any> {
+
         const movieModel = new MovieModel();
 
-        const movieList = await movieModel.listAll();
+        try {
 
-        return response.status(200).json(movieList);
+            const movieList = await movieModel.listAll();
+
+            return response.status(200).json(movieList);
+
+        } catch (error) {
+            throw error;
+        }
+
+
     }
 
-    async listAllMoviesSorted(request:Request, response: Response): Promise<any>{
-        
+    async listAllMoviesSorted(request: Request, response: Response): Promise<any> {
+
         const movieModel = new MovieModel();
 
-        const movieListSorted = await movieModel.sortAll();
+        try {
 
-        return response.status(200).json(movieListSorted);
+            const movieListSorted = await movieModel.sortAll();
+
+            return response.status(200).json(movieListSorted);
+
+        } catch (error) {
+            throw error;
+        }
+
+
     }
 
-    async listAllMoviesByPagination(request:Request, response: Response): Promise<any>{
+    async listAllMoviesByPagination(request: Request, response: Response): Promise<any> {
 
         const pageId = Number(request.query.id);
-        
+
         const movieModel = new MovieModel();
 
         const movieListAfterPagination = await movieModel.paginationMovies(pageId);
@@ -47,4 +72,4 @@ class MovieController{
     }
 }
 
-export {MovieController};
+export { MovieController };
